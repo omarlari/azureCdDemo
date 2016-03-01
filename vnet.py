@@ -1,10 +1,14 @@
 import requests
+import azure
 from azure.mgmt.resource import Deployment
 from azure.mgmt.resource import DeploymentProperties
 from azure.mgmt.resource import DeploymentMode
+from azure.mgmt.resource import ParametersLink
+from azure.mgmt.resource import TemplateLink
 from azure.mgmt.resource import ResourceGroup
 from azure.mgmt.common import SubscriptionCloudCredentials
 from azure.mgmt.resource import ResourceManagementClient
+
 
 
 def get_token_from_client_credentials(endpoint, client_id, client_secret):
@@ -31,15 +35,15 @@ resource_client = ResourceManagementClient(creds)
 deployment_name = 'azurecddemo'
 
 template = TemplateLink(
-    uri='https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-create-availability-set/azuredeploy.json',
+    uri='https://github.com/omarlari/azureCdDemo/blob/master/vnet.json',
 )
 
 parameters = ParametersLink(
-    uri='https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-create-availability-set/azuredeploy.parameters.json',
+    uri='https://github.com/omarlari/azureCdDemo/blob/master/vnet.parameters.json',
 )
 
 group_name = "azurecddemo"
-
+"""
 action = resource_client.resource_groups.create_or_update(
     group_name,
     ResourceGroup(
@@ -49,14 +53,15 @@ action = resource_client.resource_groups.create_or_update(
         },
     )
 )
+"""
 result = resource_client.deployments.create_or_update(
     group_name,
     deployment_name,
     Deployment(
         properties=DeploymentProperties(
             mode=DeploymentMode.incremental,
-            template=template,
-            parameters=parameters,
+            template_link=template,
+            parameters_link=parameters,
         )
     )
 )
