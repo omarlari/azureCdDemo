@@ -40,5 +40,11 @@
         }
       }
     }
-  ]
+  ],
+  "outputs": {
+    "vnetName": {
+      "type": "string",
+      "value": "[resources('name')]"
+    }
+  }
 }

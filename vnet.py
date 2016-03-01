@@ -35,11 +35,11 @@ resource_client = ResourceManagementClient(creds)
 deployment_name = 'azurecddemo'
 
 template = TemplateLink(
-    uri='https://github.com/omarlari/azureCdDemo/blob/master/vnet.json',
+    uri='https://raw.githubusercontent.com/omarlari/azureCdDemo/master/vnet.json',
 )
 
 parameters = ParametersLink(
-    uri='https://github.com/omarlari/azureCdDemo/blob/master/vnet.parameters.json',
+    uri='https://raw.githubusercontent.com/omarlari/azureCdDemo/master/vnet.parameters.json',
 )
 
 group_name = "azurecddemo"

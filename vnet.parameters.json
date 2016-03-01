@@ -6,7 +6,7 @@
       "value": "West US"
     },
     "vnetName": {
-      "value": "VNet1"
+      "value": "azureCdDemo"
     },
     "vnetAddressPrefix": {
       "value": "10.1.0.0/24"
