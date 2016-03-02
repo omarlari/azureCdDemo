@@ -21,13 +21,6 @@
       "metadata": {
         "description": "Address prefix"
       }
-    },
-    "newSubnetAddressPrefix": {
-      "type": "string",
-      "defaultValue": "10.0.0.0/24",
-      "metadata": {
-        "description": "Address space of the subnet to add"
-      }
     }
   },
   "variables": {
@@ -49,7 +42,7 @@
     }
   ],
   "outputs": {
-    "vnetName": {
+    "vnetName001": {
       "type": "string",
       "value": "[resources('name')]"
     }

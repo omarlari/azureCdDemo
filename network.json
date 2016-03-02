@@ -1,13 +1,7 @@
 {
-  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "location": {
-      "type": "string",
-      "metadata": {
-        "description": "Deployment location"
-      }
-    },
     "vnetName": {
       "type": "string",
       "defaultValue": "VNet1",
@@ -15,39 +9,17 @@
         "description": "VNet name"
       }
     },
-    "vnetAddressPrefix": {
+    "newSubnetName": {
       "type": "string",
-      "defaultValue": "10.0.0.0/16",
       "metadata": {
-        "description": "Address prefix"
+        "description": "Name of the subnet to add"
       }
     },
-    "subnet1Prefix": {
+    "newSubnetAddressPrefix": {
       "type": "string",
       "defaultValue": "10.0.0.0/24",
       "metadata": {
-        "description": "Subnet 1 Prefix"
-      }
-    },
-    "subnet1Name": {
-      "type": "string",
-      "defaultValue": "Subnet1",
-      "metadata": {
-        "description": "Subnet 1 Name"
-      }
-    },
-    "subnet2Prefix": {
-      "type": "string",
-      "defaultValue": "10.0.1.0/24",
-      "metadata": {
-        "description": "Subnet 2 Prefix"
-      }
-    },
-    "subnet2Name": {
-      "type": "string",
-      "defaultValue": "Subnet2",
-      "metadata": {
-        "description": "Subnet 2 Name"
+        "description": "Address space of the subnet to add"
       }
     }
   },
@@ -57,30 +29,13 @@
   "resources": [
     {
       "apiVersion": "[variables('apiVersion')]",
-      "type": "Microsoft.Network/virtualNetworks",
-      "name": "[parameters('vnetName')]",
-      "location": "[parameters('location')]",
+      "type": "Microsoft.Network/virtualNetworks/subnets",
+      "name": "[concat(parameters('vnetName'), '/', parameters('newSubnetName'))]",
+      "location": "[resourceGroup().location]",
       "properties": {
-        "addressSpace": {
-          "addressPrefixes": [
-            "[parameters('vnetAddressPrefix')]"
-          ]
-        },
-        "subnets": [
-          {
-            "name": "[parameters('subnet1Name')]",
-            "properties": {
-              "addressPrefix": "[parameters('subnet1Prefix')]"
-            }
-          },
-          {
-            "name": "[parameters('subnet2Name')]",
-            "properties": {
-              "addressPrefix": "[parameters('subnet2Prefix')]"
-            }
-          }
-        ]
+        "addressPrefix": "[parameters('newSubnetAddressPrefix')]"
       }
     }
-  ]
+  ],
+  "outputs": {}
 }
