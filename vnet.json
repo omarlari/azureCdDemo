@@ -3,24 +3,13 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "location": {
-      "type": "string",
-      "metadata": {
-        "description": "Deployment location"
-      }
+      "type": "string"
     },
     "vnetName": {
-      "type": "string",
-      "defaultValue": "VNet1",
-      "metadata": {
-        "description": "VNet name"
-      }
+      "type": "string"
     },
     "vnetAddressPrefix": {
-      "type": "string",
-      "defaultValue": "10.0.0.0/16",
-      "metadata": {
-        "description": "Address prefix"
-      }
+      "type": "string"
     }
   },
   "variables": {
@@ -44,7 +33,7 @@
   "outputs": {
     "vnetName001": {
       "type": "string",
-      "value": "[resources('name')]"
+      "value": "[parameters('vnetName')]"
     }
   }
 }
