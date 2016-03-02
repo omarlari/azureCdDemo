@@ -43,17 +43,17 @@ parameters = ParametersLink(
 )
 
 group_name = "azurecddemo"
-"""
+
 action = resource_client.resource_groups.create_or_update(
     group_name,
     ResourceGroup(
         location='westus',
         tags={
-            'env': 'deployed via Python',
+            'env': 'deployed via super python',
         },
     )
 )
-"""
+
 result = resource_client.deployments.create_or_update(
     group_name,
     deployment_name,
