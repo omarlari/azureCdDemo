@@ -10,6 +10,13 @@
     },
     "vnetAddressPrefix": {
       "value": "10.1.0.0/16"
+    },
+    "newSubnetAddressPrefix": {
+      "type": "string",
+      "defaultValue": "10.0.0.0/24",
+      "metadata": {
+        "description": "Address space of the subnet to add"
+      }
     }
   }
 }
